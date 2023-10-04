@@ -23,7 +23,7 @@ def write_file(file_name, lst):
         res = list(f_reader)
     obj = {"Фамилия": lst[0], "Имя": lst[1], "Номер": lst[2]}
     res.append(obj)
-    with open("Phone.csv", "w", encoding= "utf-8")  as data:
+    with open("Phone.csv", "w", encoding= "utf-8", newline="")  as data:
         f_writer = DictWriter(data, fieldnames= ['Фамилия', 'Имя', 'Номер'])
         f_writer.writeheader()
         f_writer.writerows(res)
@@ -40,7 +40,6 @@ def main():
         elif command == "w":
             if not exists("Phone.csv"):
                 create_file()
-            get_info()
-            write_file()
+            write_file("Phone.csv", get_info())
 
 main()
